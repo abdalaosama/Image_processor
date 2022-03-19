@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jasmine",
     "start": "node ./dist",
     "start-direct": "tsc && npm run start",
     "build": "tsc",
-    "lint" : "eslint ./src",
+    "lint": "eslint ./src",
     "fix-lint": "eslint ./src --fix"
   },
   "keywords": [],
@@ -17,9 +17,13 @@
   "dependencies": {
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "jasmine": "^4.0.2",
+    "jasmine-spec-reporter": "^7.0.0"
   },
   "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/jasmine": "^4.0.0",
     "@types/node": "^17.0.21",
     "@typescript-eslint/eslint-plugin": "^5.15.0",
     "eslint": "^8.11.0",

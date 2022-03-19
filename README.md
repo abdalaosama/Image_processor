@@ -7,3 +7,14 @@ npm scripts:{
     fix-lint // runs eslint with --fix option, which fixed files formatting
     
 }
+
+endpoints: {
+    /gallery :
+    /serve   :
+    /upload  :
+
+}
+
+installed types for: [
+    express
+] 
