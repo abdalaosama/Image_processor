@@ -1,20 +1,16 @@
-#Image Processor: Abdullah Osama
+# Image Processor
 
-npm scripts:{
+This project Helps you server all your images to your users in the most reliable, scalable and convenient way.
 
-    build   // compiles ts into js 
-    lint    // runs eslint
-    fix-lint // runs eslint with --fix option, which fixed files formatting
-    
-}
+My attempt at udacity's first Project
 
-endpoints: {
-    /gallery :
-    /serve   :
-    /upload  :
+## Endpoints
+### /gallery
 
-}
+### /serve
 
-installed types for: [
-    express
-] 
+### /upload
+
+```bash
+npm install
+```
