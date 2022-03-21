@@ -64,7 +64,9 @@ app.get('/gallery', async (req: express.Request, resp: express.Response) => {// 
   //read all files names from full and thump
   try{
         let files: string[] = await readdir(path.join(config.assetsFolder, "full"))
-    
+        let filesThump : string[] = await readdir(path.join(config.assetsFolder, "thump"))
+        files = [...files, ...filesThump];
+        
         let result: string[] = files.map((file: string) => `/serve/${file}`)
         Log<Array<string>>(result)
         

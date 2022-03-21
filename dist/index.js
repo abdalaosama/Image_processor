@@ -21,7 +21,7 @@ const config_1 = __importDefault(require("./config"));
 const path_1 = __importDefault(require("path"));
 const app = (0, express_1.default)();
 const port = 3000 || process.env.PORT;
-app.get('/serve', (req, resp) => {
+app.get('/serve/:filename', (req, resp) => {
     try {
         // check for the existance of the filename ,width and height parameters
         const { filename } = req.params;
@@ -76,6 +76,8 @@ app.get('/gallery', (req, resp) => __awaiter(void 0, void 0, void 0, function* (
     //read all files names from full and thump
     try {
         let files = yield (0, promises_1.readdir)(path_1.default.join(config_1.default.assetsFolder, "full"));
+        let filesThump = yield (0, promises_1.readdir)(path_1.default.join(config_1.default.assetsFolder, "thump"));
+        files = [...files, ...filesThump];
         let result = files.map((file) => `/serve/${file}`);
         (0, logger_1.Log)(result);
         resp.status(200).json({ success: true, message: "images listed succesfully", data: result });
