@@ -1,7 +1,4 @@
 "use strict";
-function myFunc(t) {
-    return 25;
-}
-it('expect myFunc(5) to equal 25', () => {
-    expect(myFunc(5)).toEqual(25);
+Object.defineProperty(exports, "__esModule", { value: true });
+describe("gallery:", () => {
 });
