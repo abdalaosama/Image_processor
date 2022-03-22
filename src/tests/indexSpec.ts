@@ -42,13 +42,23 @@ describe('GET /serve/', () => {
     let data: request.Response;
     beforeAll(async () => {
       data = await request(app).get('/serve/invalid.jpg');
-      console.log(data.body.data);
+    //   console.log(data.body);
     });
     it('should respond success false', async () => {
-      expect(data.body.data.success).toBeFalse();
+      expect(data.body.success).toBeFalse();
     });
     it('should respond message file not found', async () => {
-      expect(data.body.data.message).toEqual('file not found!');
+      expect(data.body.message).toEqual('file not found!');
+    });
+  });
+  describe('correct image, width and height but are outside of range', async () => {
+    let data: request.Response;
+    beforeAll(async () => {
+      data = await request(app).get('/serve/fjord.jpg?width=10000&height=10000');
+      // console.log(data.headers)
+    });
+    it('responds with image content', () => {
+      expect(data.headers['content-type']).toEqual('image/jpeg');
     });
   });
   // describe("correct image, no width or height", async ()=> {

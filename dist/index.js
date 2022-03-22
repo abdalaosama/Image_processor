@@ -30,7 +30,9 @@ app.get('/serve/:filename', (req, resp) => {
         const { width, height } = req.query;
         const parsedWidth = parseInt(width);
         const parsedHeight = parseInt(height);
-        const dimensionsProvided = !isNaN(parsedWidth) && !isNaN(parsedHeight);
+        const dimensionsProvided = (!isNaN(parsedWidth) && !isNaN(parsedHeight))
+            && (parsedWidth > 0 && parsedWidth < 10000)
+            && (parsedHeight > 0 && parsedHeight < 10000);
         if (filename == undefined)
             return resp
                 .status(404)

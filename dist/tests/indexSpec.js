@@ -52,14 +52,24 @@ describe('GET /serve/', () => {
         let data;
         beforeAll(() => __awaiter(void 0, void 0, void 0, function* () {
             data = yield (0, supertest_1.default)(index_1.default).get('/serve/invalid.jpg');
-            console.log(data.body.data);
+            console.log(data.body);
         }));
         it('should respond success false', () => __awaiter(void 0, void 0, void 0, function* () {
-            expect(data.body.data.success).toBeFalse();
+            expect(data.body.success).toBeFalse();
         }));
         it('should respond message file not found', () => __awaiter(void 0, void 0, void 0, function* () {
-            expect(data.body.data.message).toEqual('file not found!');
+            expect(data.body.message).toEqual('file not found!');
         }));
+    }));
+    describe('correct image, width and height but are outside of range', () => __awaiter(void 0, void 0, void 0, function* () {
+        let data;
+        beforeAll(() => __awaiter(void 0, void 0, void 0, function* () {
+            data = yield (0, supertest_1.default)(index_1.default).get('/serve/fjord.jpg?width=10000&height=10000');
+            // console.log(data.headers)
+        }));
+        it('responds with image content', () => {
+            expect(data.headers['content-type']).toEqual('image/jpeg');
+        });
     }));
     // describe("correct image, no width or height", async ()=> {
     // })
