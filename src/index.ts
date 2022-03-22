@@ -15,7 +15,7 @@ app.get('/serve/:filename', (req: express.Request, resp: express.Response) => {
   // server image file
   try {
     // check for the existance of the filename ,width and height parameters
-    const { filename } = req.params;
+    const { filename } = req.params;     //implicit types aren't any
     const { width, height } = req.query;
     const parsedWidth: number = parseInt(width as string);
     const parsedHeight: number = parseInt(height as string);
