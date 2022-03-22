@@ -42,7 +42,7 @@ describe('GET /serve/', () => {
     let data: request.Response;
     beforeAll(async () => {
       data = await request(app).get('/serve/invalid.jpg');
-    //   console.log(data.body);
+      //   console.log(data.body);
     });
     it('should respond success false', async () => {
       expect(data.body.success).toBeFalse();
@@ -54,7 +54,9 @@ describe('GET /serve/', () => {
   describe('correct image, width and height but are outside of range', async () => {
     let data: request.Response;
     beforeAll(async () => {
-      data = await request(app).get('/serve/fjord.jpg?width=10000&height=10000');
+      data = await request(app).get(
+        '/serve/fjord.jpg?width=10000&height=10000'
+      );
       // console.log(data.headers)
     });
     it('responds with image content', () => {

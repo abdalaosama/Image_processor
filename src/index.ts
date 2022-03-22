@@ -15,14 +15,17 @@ app.get('/serve/:filename', (req: express.Request, resp: express.Response) => {
   // server image file
   try {
     // check for the existance of the filename ,width and height parameters
-    const { filename } = req.params;     //implicit types aren't any
+    const { filename } = req.params; //implicit types aren't any
     const { width, height } = req.query;
     const parsedWidth: number = parseInt(width as string);
     const parsedHeight: number = parseInt(height as string);
-    const dimensionsProvided = 
-    (!isNaN(parsedWidth) && !isNaN(parsedHeight))
-    && (parsedWidth > 0 && parsedWidth < 10000)
-    && (parsedHeight > 0 && parsedHeight < 10000);
+    const dimensionsProvided =
+      !isNaN(parsedWidth) &&
+      !isNaN(parsedHeight) &&
+      parsedWidth > 0 &&
+      parsedWidth < 10000 &&
+      parsedHeight > 0 &&
+      parsedHeight < 10000;
     if (filename == undefined)
       return resp
         .status(404)
