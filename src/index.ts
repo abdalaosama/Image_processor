@@ -61,6 +61,9 @@ app.get('/serve/:filename', (req: express.Request, resp: express.Response) => {
       if (!dimensionsProvided) {
         return resp.status(200).sendFile(path.resolve(originalImagePath));
       }
+
+
+      //https://github.com/lovell/sharp#examples // gotten from the examples with some edits.
       //    create new image file with required params.
       sharp(originalImagePath)
         .resize(parsedWidth, parsedHeight)
