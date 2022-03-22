@@ -21,30 +21,36 @@ const config_1 = __importDefault(require("./config"));
 const path_1 = __importDefault(require("path"));
 const app = (0, express_1.default)();
 const port = 3000 || process.env.PORT;
+app.use(logger_1.MiddleWareLogger);
 app.get('/serve/:filename', (req, resp) => {
+    // server image file
     try {
         // check for the existance of the filename ,width and height parameters
         const { filename } = req.params;
         const { width, height } = req.query;
         const parsedWidth = parseInt(width);
         const parsedHeight = parseInt(height);
-        const dimensionsProvided = (!isNaN(parsedWidth) && !isNaN(parsedHeight));
+        const dimensionsProvided = !isNaN(parsedWidth) && !isNaN(parsedHeight);
         if (filename == undefined)
-            return resp.status(404).json({ success: false, message: "malformed input! missing filename" });
+            return resp
+                .status(404)
+                .json({ success: false, message: 'malformed input! missing filename' });
         (0, logger_1.Log)(`filename: ${filename}, width: ${width}, height: ${height}, from IP: ${req.ip}`);
         // make sure those inputs are safe (unpolluted)
-        let imagePath = path_1.default.join(config_1.default.assetsFolder, '/thump', `${filename.split('.')[0]}${width}x${height}.${filename.split('.')[1]}`);
+        const imagePath = path_1.default.join(config_1.default.assetsFolder, '/thump', `${filename.split('.')[0]}${width}x${height}.${filename.split('.')[1]}`);
         // check for the existance of the required image file
         const imageExists = fs_1.default.existsSync(imagePath);
-        // if not exists 
+        // if not exists
         if (!imageExists) {
             //check for image in full
             const originalImagePath = path_1.default.join(config_1.default.assetsFolder, '/full', filename);
             const imageExistsinFull = fs_1.default.existsSync(originalImagePath);
-            // if not 
+            // if not
             // return image not found
             if (!imageExistsinFull) {
-                return resp.status(404).json({ success: false, message: "file not found!" });
+                return resp
+                    .status(404)
+                    .json({ success: false, message: 'file not found!' });
             }
             if (!dimensionsProvided) {
                 return resp.status(200).sendFile(path_1.default.resolve(originalImagePath));
@@ -59,34 +65,44 @@ app.get('/serve/:filename', (req, resp) => {
             })
                 .catch((e) => {
                 (0, logger_1.Log)(e);
-                return resp.status(500).json({ success: false, message: "error proccess the image" });
+                return resp
+                    .status(500)
+                    .json({ success: false, message: 'error proccess the image' });
             });
             return;
         }
         return resp.status(200).sendFile(path_1.default.resolve(imagePath));
-        // serve image content 
+        // serve image content
     }
     catch (e) {
         (0, logger_1.Log)(e);
-        resp.status(500).json({ success: false, message: "internal server Error" });
+        resp.status(500).json({ success: false, message: 'internal server Error' });
         return;
     }
 });
 app.get('/gallery', (req, resp) => __awaiter(void 0, void 0, void 0, function* () {
+    // shows all images in the folders
     //read all files names from full and thump
     try {
-        let files = yield (0, promises_1.readdir)(path_1.default.join(config_1.default.assetsFolder, "full"));
-        let filesThump = yield (0, promises_1.readdir)(path_1.default.join(config_1.default.assetsFolder, "thump"));
+        let files = yield (0, promises_1.readdir)(path_1.default.join(config_1.default.assetsFolder, 'full'));
+        const filesThump = yield (0, promises_1.readdir)(path_1.default.join(config_1.default.assetsFolder, 'thump'));
         files = [...files, ...filesThump];
-        let result = files.map((file) => `/serve/${file}`);
+        const result = files.map((file) => `/serve/${file}`);
         (0, logger_1.Log)(result);
-        resp.status(200).json({ success: true, message: "images listed succesfully", data: result });
+        resp.status(200).json({
+            success: true,
+            message: 'images listed succesfully',
+            data: result,
+        });
     }
     catch (e) {
         (0, logger_1.Log)(e);
-        return resp.status(500).json({ success: false, message: "internal server Error" });
+        return resp
+            .status(500)
+            .json({ success: false, message: 'internal server Error' });
     }
 }));
 app.listen(port, () => {
     (0, logger_1.Log)(`Server started on port ${port}`);
 });
+exports.default = app;

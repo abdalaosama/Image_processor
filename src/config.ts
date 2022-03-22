@@ -1,6 +1,6 @@
 const config = {
   logFile: 'logs/log.txt',
-  assetsFolder:'assets',
+  assetsFolder: 'assets',
   port: 3000,
 };
 

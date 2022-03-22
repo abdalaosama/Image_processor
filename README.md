@@ -3,6 +3,8 @@
 This project Helps you server all your images to your users in the most reliable, scalable and convenient way.
 
 My attempt at udacity's first Project
+file caching is implmented
+logger middleware is implmented
 ## installation
 run the following commands to install the project
 ```bash
@@ -37,4 +39,5 @@ example:
 ```
 /serve/example.jpg ?width=100 &height=100
 ```
+both width and height would need to be provided in order to be applied otherwise will default to normal size
 
