@@ -6,10 +6,10 @@ My attempt at udacity's first Project
 file caching is implmented
 logger middleware is implmented
 ## images
-the images are in /assets/full folder.
-please don't delete the file fjord.jpg as it is used in testing.
-Allowed Image types: JPEG(JPG), PNG, WebP, GIF, AVIF or TIFF
-all files in the folder assets/thump can be deleted no problem.
+the images are in /assets/full folder.<br>
+please don't delete the file fjord.jpg as it is used in testing.<br>
+Allowed Image types: JPEG(JPG), PNG, WebP, GIF, AVIF or TIFF<br>
+all files in the folder assets/thump can be deleted no problem.<br>
 ## installation
 run the following commands to install the project
 ```bash
