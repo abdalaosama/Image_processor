@@ -52,7 +52,7 @@ describe('GET /serve/', () => {
         let data;
         beforeAll(() => __awaiter(void 0, void 0, void 0, function* () {
             data = yield (0, supertest_1.default)(index_1.default).get('/serve/invalid.jpg');
-            console.log(data.body);
+            //   console.log(data.body);
         }));
         it('should respond success false', () => __awaiter(void 0, void 0, void 0, function* () {
             expect(data.body.success).toBeFalse();

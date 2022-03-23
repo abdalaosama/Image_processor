@@ -26,13 +26,16 @@ app.get('/serve/:filename', (req, resp) => {
     // server image file
     try {
         // check for the existance of the filename ,width and height parameters
-        const { filename } = req.params;
+        const { filename } = req.params; //implicit types aren't any
         const { width, height } = req.query;
         const parsedWidth = parseInt(width);
         const parsedHeight = parseInt(height);
-        const dimensionsProvided = (!isNaN(parsedWidth) && !isNaN(parsedHeight))
-            && (parsedWidth > 0 && parsedWidth < 10000)
-            && (parsedHeight > 0 && parsedHeight < 10000);
+        const dimensionsProvided = !isNaN(parsedWidth) &&
+            !isNaN(parsedHeight) &&
+            parsedWidth > 0 &&
+            parsedWidth < 10000 &&
+            parsedHeight > 0 &&
+            parsedHeight < 10000;
         if (filename == undefined)
             return resp
                 .status(404)
@@ -57,6 +60,7 @@ app.get('/serve/:filename', (req, resp) => {
             if (!dimensionsProvided) {
                 return resp.status(200).sendFile(path_1.default.resolve(originalImagePath));
             }
+            //https://github.com/lovell/sharp#examples // gotten from the examples with some edits.
             //    create new image file with required params.
             (0, sharp_1.default)(originalImagePath)
                 .resize(parsedWidth, parsedHeight)

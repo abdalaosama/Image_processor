@@ -62,7 +62,6 @@ app.get('/serve/:filename', (req: express.Request, resp: express.Response) => {
         return resp.status(200).sendFile(path.resolve(originalImagePath));
       }
 
-
       //https://github.com/lovell/sharp#examples // gotten from the examples with some edits.
       //    create new image file with required params.
       sharp(originalImagePath)
