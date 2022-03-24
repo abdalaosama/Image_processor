@@ -60,6 +60,9 @@ app.get('/serve/:filename', (req, resp) => {
             if (!dimensionsProvided) {
                 return resp.status(200).sendFile(path_1.default.resolve(originalImagePath));
             }
+            if (!fs_1.default.existsSync(path_1.default.join(config_1.default.assetsFolder, '/thump'))) {
+                fs_1.default.mkdirSync(path_1.default.join(config_1.default.assetsFolder, '/thump'));
+            }
             //https://github.com/lovell/sharp#examples // gotten from the examples with some edits.
             //    create new image file with required params.
             (0, sharp_1.default)(originalImagePath)
