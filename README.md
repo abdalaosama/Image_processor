@@ -33,6 +33,7 @@ npm run start-direct
     lint:           "eslint ./src",
     fix-lint:       "eslint ./src --fix"
     dev:            "nodemon src/index.ts"
+    prettier        "prettier ./src --write --config ./.prettierrc"
     ```
 
 ## Endpoints

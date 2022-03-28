@@ -1,3 +1,4 @@
 node_modules
-assets/thump
 dist
+assets
+spec

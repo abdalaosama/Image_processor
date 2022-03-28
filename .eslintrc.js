@@ -19,5 +19,6 @@ module.exports = {
     ],
     "rules": {
         "prettier/prettier": 1
-    }
+    },
+    "ignorePatterns": ["dist"],
 }
